@@ -13,7 +13,7 @@ struct Task {
 class TodoList {
     private:
     std::vector<Task> tasks;
-    int nextId = 1;
+    int nextId = 1; // starts at 1, never reused even after task removal, to keep IDs stable
     public:
     void addTask(const std::string& title, const std::string& description) {
         tasks.push_back(Task {title, description, nextId, false});
