@@ -56,6 +56,8 @@ int main() {
             std::cout << "Value's out of range try again!\n";
             continue;
         }
+        // stoi stops at the first non-numeric character; if pos doesn't reach the
+        // end of the string, there's leftover junk after the number (e.g. "3x", "4klkl")
         if(pos != input.length()) {
             std::cout << "Value's out of range try again!\n";
             continue;
