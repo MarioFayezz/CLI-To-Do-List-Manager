@@ -32,6 +32,7 @@ On Windows, the compiled binary will be `todo.exe` instead.
 ## Usage
 
 Run the program and choose an option from the menu:
+
 --- To-Do List ---
 1. Add task
 2. List tasks
