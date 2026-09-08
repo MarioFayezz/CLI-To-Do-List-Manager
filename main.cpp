@@ -34,14 +34,26 @@ class TodoList {
             }
         }
     }
+    bool markDone(int ID) {
+        for(auto& task : tasks) {
+            if(task.id == ID) {
+                task.isDone = true;
+                return true;
+            }
+        }
+        return false;
+    }
 };
 int main() {
     TodoList List;
     std::string input;
     std::string listTitleInput;
     std::string listDescriptionInput;
+    std::string taskID;
     std::size_t pos;
+    std::size_t IDpos;
     int choice;
+    int ID;
     while(true) {
         printMenu();
         std::getline(std::cin, input);
@@ -78,6 +90,33 @@ int main() {
         else if(choice == 2) {
             List.listTasks();
             continue;
+        }
+        else if(choice == 3) {
+            std::cout << "Enter The Id Of The Task: " ;
+            std::getline(std::cin, taskID);
+            try {
+                ID = std::stoi(taskID, &IDpos);
+            }
+            catch (std::invalid_argument&) {
+                std::cout << "Value's out of range!\n";
+                continue;
+            }
+            catch (std::out_of_range&) {
+                std::cout << "Value's out of range!\n";
+                continue;
+            }
+            if(IDpos != taskID.length()){
+                std::cout << "Value's out of range try again!\n";
+                continue;
+            }
+            if(List.markDone(ID)) {
+                std::cout << "Task marked done successfully!\n";
+                continue;
+            }
+            else {
+                std::cout << "Task Doesn't Exist!\n";
+                continue;
+            }
         }
         else if(choice == 5) {
             std::cout << "Program stopped !\n";
