@@ -43,6 +43,15 @@ class TodoList {
         }
         return false;
     }
+    bool removeTask(int ID) {
+        for(std::size_t i = 0; i < tasks.size(); i++) {
+            if(tasks.at(i).id == ID) {
+                tasks.erase(tasks.begin() + i);
+                return true;
+            }
+        }
+        return false;
+    }
 };
 int main() {
     TodoList List;
@@ -111,6 +120,33 @@ int main() {
             }
             if(List.markDone(ID)) {
                 std::cout << "Task marked done successfully!\n";
+                continue;
+            }
+            else {
+                std::cout << "Task Doesn't Exist!\n";
+                continue;
+            }
+        }
+        else if(choice == 4) {
+            std::cout << "Enter The Task's id you want to remove: ";
+            std::getline(std::cin, taskID);
+            try {
+                ID = std::stoi(taskID, &IDpos);
+            }
+            catch (std::invalid_argument&) {
+                std::cout << "Value's out of range!\n";
+                continue;
+            }
+            catch (std::out_of_range&) {
+                std::cout << "Value's out of range!\n";
+                continue;
+            }
+            if(IDpos != taskID.length()){
+                std::cout << "Value's out of range try again!\n";
+                continue;
+            }
+            if(List.removeTask(ID)) {
+                std::cout << "Task Was Removed Successfully! \n";
                 continue;
             }
             else {
